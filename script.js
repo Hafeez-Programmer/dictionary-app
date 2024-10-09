@@ -3,27 +3,36 @@ const inputELement = document.querySelector("#input");
 const searchBtnElement = document.querySelector("#search-btn");
 
 
-searchBtnElement.addEventListener("click", () => {
-  displayResult();
+searchBtnElement.addEventListener('click', () => {
   getdata();
 })
-let word = "world";
-const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+
+inputELement.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    getdata();
+  }
+})
 
 const getdata = async () => {
+  let word = inputELement.value;
+  const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+
   let response = await fetch(url);
   let data = await response.json();
-  console.log(data);
+  
+  let partOfSpeech = data[0].meanings[0].partOfSpeech;
+
+  displayResult(word, partOfSpeech);
 };
 
 
-function displayResult() {
+function displayResult(word, partOfSpeech) {
   resultContainerElement.innerHTML = `
               <div class="row">
 
               <div class="col-10 mb-3">
-                <h4>Word</h4>
-                <p>adjective</p>
+                <h4>${word}</h4>
+                <p>${partOfSpeech}</p>
               </div>
               <div class="col-2">
                 <button class="btn btn-outline-dark">

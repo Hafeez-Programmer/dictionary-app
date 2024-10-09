@@ -11,10 +11,10 @@ html, body {
   height: 100% !important;
   width: 100% !important;
   display: flex !important;
-  background-size: cover;
+  background-size: cover !important;
   align-items: center !important;
-  /* background: linear-gradient(-45deg, #97cee4, #83aee4, #70aaf1, #5c98e2, #9dc4f5) !important; */
   background-image: url(images/bg-image.png);
+  /* background: linear-gradient(-45deg, #97cee4, #83aee4, #70aaf1, #5c98e2, #9dc4f5) !important; */
   background-repeat: no-repeat !important;
 }
 
@@ -24,4 +24,23 @@ h1 {
 
 p {
   color: #b6b6b6 !important;
+}
+
+#result-container {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+#result-container::-webkit-scrollbar{
+  width: 8px;
+}
+
+#result-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#result-container::-webkit-scrollbar-thumb {
+  background: #212529;
+  border-radius: 10px;
 }
