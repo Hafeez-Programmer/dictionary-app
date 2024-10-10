@@ -16,6 +16,19 @@ html, body {
   background-image: url(images/bg-image.png);
   /* background: linear-gradient(-45deg, #97cee4, #83aee4, #70aaf1, #5c98e2, #9dc4f5) !important; */
   background-repeat: no-repeat !important;
+  animation: bg 10s infinite !important;
+  background-size: 500% 500% !important;
+}
+@keyframes bg{
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 100%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
 }
 
 h1 {
@@ -23,7 +36,7 @@ h1 {
 }
 
 p {
-  color: #b6b6b6 !important;
+  color: #635f57 !important;
 }
 
 #result-container {
@@ -36,7 +49,6 @@ p {
 }
 
 #result-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
   border-radius: 10px;
 }
 
