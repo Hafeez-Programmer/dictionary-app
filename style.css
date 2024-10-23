@@ -42,10 +42,12 @@ p {
 #result-container {
   max-height: 60vh;
   overflow-y: auto;
+  overflow-x: auto;
 }
 
 #result-container::-webkit-scrollbar{
   width: 8px;
+  height: 10px;
 }
 
 #result-container::-webkit-scrollbar-track {
