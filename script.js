@@ -38,13 +38,14 @@ function displayResult(word, data) {
   resultContainerElement.innerHTML = `
     <div class="row">
     
-    <div class="col-10 mb-3">
+    <div class="col-12">
       <h4>${word}</h4>
     </div>
-    <div class="col-2">
-      <button class="btn btn-outline-dark">
-      <i class="bi bi-volume-up fs-5"></i>
-      </button>
+    
+    <div class="col-12 mb-3">
+      <div id="phoneticsContainer" class="row">
+
+      </div>
     </div>
     
     <hr>
@@ -79,13 +80,33 @@ function displayResult(word, data) {
       </div>
       
     </div>
-      </div>
-      
+    </div>
+    
     </div>            
     `
-  let meaningContainerElement = document.querySelector("#meaningContainer");
-  let antonymsContainerElement = document.querySelector("#antonymsContainer")
-  let synonymsContainerElement = document.querySelector("#synonymsContainer");
+    
+    let phoneticsContainerElement = document.querySelector("#phoneticsContainer");
+    let meaningContainerElement = document.querySelector("#meaningContainer");
+    let antonymsContainerElement = document.querySelector("#antonymsContainer")
+    let synonymsContainerElement = document.querySelector("#synonymsContainer");
+    
+    console.log(data[0].phonetics);
+    
+  // phonetics
+  data[0].phonetics.forEach(phonetic => {
+    let phoneticText = phonetic.text || "";
+    let phoneticAudio = phonetic.audio || "";
+
+    phoneticsContainerElement.innerHTML += `
+    <div class="col-12 mb-1">        
+    <p class="d-inline">${phoneticText}</p>
+    <button id="audioBtn" class="btn btn-outline-dark" onclick="new Audio('${phoneticAudio}').play()">
+    <i class="bi bi-volume-up fs-8"></i>
+    </button>
+    </div>
+    `
+  })
+
   
   
   data[0].meanings.forEach(meaning_object => {
@@ -100,23 +121,23 @@ function displayResult(word, data) {
       `      
     });
 
+    // synonyms 
     meaning_object.synonyms.forEach(synonym_object => {
       synonymsContainerElement.innerHTML += `
-        <p class="d-inline">${synonym_object},</p>
+      <p class="d-inline">${synonym_object},</p>
       `      
     });
-
-
-    
     
     meaningContainerElement.innerHTML += `
-      <div class="col-12">      
-        <h6 class="d-inline">${partOfSpeech}:</h6>
-        <p class="d-inline">${definition}</p>
-      </div>        
-      `
+    <div class="col-12">      
+    <h6 class="d-inline">${partOfSpeech}:</h6>
+    <p class="d-inline">${definition}</p>
+    </div>        
+    `
     
     });      
+    
+    
 }
 
 
