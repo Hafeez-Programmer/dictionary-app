@@ -30,6 +30,7 @@ const getdata = async () => {
     displayResult(word, data);
     
   } catch (error) {
+    displayError(error);
     console.error("Fetch error:", error.message);
   }
 };
@@ -89,9 +90,7 @@ function displayResult(word, data) {
     let meaningContainerElement = document.querySelector("#meaningContainer");
     let antonymsContainerElement = document.querySelector("#antonymsContainer")
     let synonymsContainerElement = document.querySelector("#synonymsContainer");
-    
-    console.log(data[0].phonetics);
-    
+        
   // phonetics
   data[0].phonetics.forEach(phonetic => {
     let phoneticText = phonetic.text || "";
@@ -107,8 +106,6 @@ function displayResult(word, data) {
     `
   })
 
-  
-  
   data[0].meanings.forEach(meaning_object => {
     // meanings 
     let partOfSpeech = meaning_object.partOfSpeech;
@@ -136,8 +133,16 @@ function displayResult(word, data) {
     `
     
     });      
-    
-    
+}
+
+function displayError(error) {
+  resultContainerElement.innerHTML = `
+  <div class="alert alert-danger d-flex align-items-center">
+    <div>
+      ⚠️ Fetch error: ${error.message}
+    </div>
+  </div>
+  `
 }
 
 
