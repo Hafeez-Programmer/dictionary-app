@@ -1,6 +1,6 @@
-let resultContainerElement = document.querySelector("#result-container");
-let inputELement = document.querySelector("#input");
-let searchBtnElement = document.querySelector("#search-btn");
+let resultContainerElement = document.querySelector("#result-container"),
+inputELement = document.querySelector("#input"),
+searchBtnElement = document.querySelector("#search-btn");
 
 searchBtnElement.addEventListener('click', () => {
   getdata();
@@ -11,7 +11,6 @@ inputELement.addEventListener('keypress', (e) => {
     getdata();
   }
 })
-
 
 const getdata = async () => {
   let word = inputELement.value;
@@ -86,10 +85,10 @@ function displayResult(word, data) {
     </div>            
     `
     
-    let phoneticsContainerElement = document.querySelector("#phoneticsContainer");
-    let meaningContainerElement = document.querySelector("#meaningContainer");
-    let antonymsContainerElement = document.querySelector("#antonymsContainer")
-    let synonymsContainerElement = document.querySelector("#synonymsContainer");
+    let phoneticsContainerElement = document.querySelector("#phoneticsContainer"),
+    meaningContainerElement = document.querySelector("#meaningContainer"),
+    antonymsContainerElement = document.querySelector("#antonymsContainer"),
+    synonymsContainerElement = document.querySelector("#synonymsContainer");
         
   // phonetics
   data[0].phonetics.forEach(phonetic => {
@@ -144,6 +143,8 @@ function displayError(error) {
   </div>
   `
 }
+
+
 
 
 
