@@ -13,24 +13,28 @@ inputELement.addEventListener('keypress', (e) => {
 })
 
 const getdata = async () => {
-  let word = inputELement.value;
-  const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
-  
-  try {
-    let response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status} ${response.statusText}`);
+  if (inputELement.value == '') {
+    displayError("please fill the input.");
+  } else {
+    let word = inputELement.value;
+    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+    
+    try {
+      let response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+      
+      let data = await response.json();
+      
+      // console.log(data[0]);
+      
+      displayResult(word, data);
+      
+    } catch (error) {
+      displayError(error.message);
+      console.error("Fetch error:", error.message);
     }
-    
-    let data = await response.json();
-    
-    // console.log(data[0]);
-    
-    displayResult(word, data);
-    
-  } catch (error) {
-    displayError(error);
-    console.error("Fetch error:", error.message);
   }
 };
 
@@ -138,7 +142,7 @@ function displayError(error) {
   resultContainerElement.innerHTML = `
   <div class="alert alert-danger d-flex align-items-center">
     <div>
-      ⚠️ Fetch error: ${error.message}
+      ⚠️ ${error}
     </div>
   </div>
   `
